@@ -12,22 +12,78 @@ GAME RULES:
 let scores, 
     roundScore, 
     activePlayer, 
-    dice;
+    dice,
+    hide;
 
 scores = [0,0];
 roundScore = 0;
-activePlayer = 1;
+activePlayer = 0;
 
 
-dice = Math.floor(Math.random() * 6) + 1;
-
-console.log(dice);
+// dice = Math.floor(Math.random() * 6) + 1;
 
 // take value from dice and put into box of current round points racked up.
-document.querySelector('#current-' + activePlayer).textContent = dice;
+// document.querySelector('#current-' + activePlayer).textContent = dice;
 // document.querySelector('#current-' + activePlayer).innerHTML = '<strong>' + dice + '</strong>';
 
-var x = document.querySelector('#score-0').textContent;
-console.log(x);
+// var x = document.querySelector('#score-0').textContent;
+// console.log(x);
 
 document.querySelector('.dice').style.display = 'none';
+
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
+// function btn() {
+//     // do something here
+
+// }
+// btn();
+                                                    // callback function
+// document.querySelector('.btn-roll').addEventListener('click', btn);
+
+                                                    // anonymous function
+                                                    // can't be used anywhere else
+let diceDOM = document.querySelector('.dice');                                                    
+document.querySelector('.btn-roll').addEventListener('click', function() {
+    // 1. random number when clicked
+    dice = Math.floor(Math.random() * 6) + 1;
+    // 2. display result
+    
+    diceDOM.style.display = 'block';
+    diceDOM.src = './imgs/dice-' + dice + '.png';
+    // 3. update round score IF the rolled number was NOT a 1.
+    if (dice != 1) {
+        // add score
+        showDie();
+        roundScore += dice;
+        document.getElementById('current-' + activePlayer).textContent = roundScore;
+        
+    } else {
+        // Next Player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+        roundScore = 0;
+
+        document.getElementById('current-0').textContent = roundScore;
+        document.getElementById('current-1').textContent = roundScore;
+
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+
+        hideDie();
+    }
+
+});
+
+
+function hideDie() {
+    hide = setTimeout(function() {
+        diceDOM.style.display = 'none';
+    }, 1000);
+}
+    
+function showDie() {
+    clearTimeout(hide);
+}
