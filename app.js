@@ -9,4 +9,25 @@ GAME RULES:
 
 */
 
-meh fleh ByteLengthQueuingStrategy
+let scores, 
+    roundScore, 
+    activePlayer, 
+    dice;
+
+scores = [0,0];
+roundScore = 0;
+activePlayer = 1;
+
+
+dice = Math.floor(Math.random() * 6) + 1;
+
+console.log(dice);
+
+// take value from dice and put into box of current round points racked up.
+document.querySelector('#current-' + activePlayer).textContent = dice;
+// document.querySelector('#current-' + activePlayer).innerHTML = '<strong>' + dice + '</strong>';
+
+var x = document.querySelector('#score-0').textContent;
+console.log(x);
+
+document.querySelector('.dice').style.display = 'none';
