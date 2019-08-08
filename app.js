@@ -16,6 +16,11 @@ let scores,
     hide,
     gamePlaying;
 
+let roll,
+    previousRoll;
+
+let rollLog = [];
+
 init();
 
 // dice = Math.floor(Math.random() * 6) + 1;
@@ -37,6 +42,7 @@ init();
 
                                                     // anonymous function
                                                     // can't be used anywhere else
+
 let diceDOM = document.querySelector('.dice');
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {
@@ -52,13 +58,28 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
             showDie();
             roundScore += dice;
             document.getElementById('current-' + activePlayer).textContent = roundScore;
-            
+            if(dice == roll && roll == 6) {
+                scores[activePlayer] = 0;
+                document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+                roll = "BROKE";
+                rollLog.unshift(roll);
+                rollLogPanel();
+                nextPlayer();
+            }
+            roll = dice;
+            rollLog.unshift(roll);
+            rollLogPanel();            
         } else {
             // Next Player
+            roll = "BUST";
+            rollLog.unshift(roll);
+            rollLogPanel();
             nextPlayer();
         }
     }
 });
+
+
 
 // ***************
 // Hold Button
@@ -79,12 +100,24 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
         } else {
             // next player
+            roll = 'HOLD';
+            rollLog.unshift(roll);
+            rollLogPanel();
             nextPlayer();
         }
     }
 });
 
 document.querySelector('.btn-new').addEventListener('click', init);
+
+function rollLogPanel() {
+    for(let i = 0; i < 10; i++) {
+        document.querySelector('.roll-' + [i]).textContent = rollLog[i];
+        
+        // document.querySelector('.roll-' + [i]).src = './imgs/dice-' + rollLog[i] + '.png';
+        
+    }
+}
 
 function init() {
     scores = [0,0];
