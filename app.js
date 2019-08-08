@@ -60,7 +60,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
             document.getElementById('current-' + activePlayer).textContent = roundScore;
             if(dice == roll && roll == 6) {
                 scores[activePlayer] = 0;
-                document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+                document.querySelector('#score-' + activePlayer).textContent = 0;
                 roll = "BROKE";
                 rollLog.unshift(roll);
                 rollLogPanel();
@@ -110,11 +110,14 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 
 document.querySelector('.btn-new').addEventListener('click', init);
 
+
+
 function rollLogPanel() {
+    if(rollLog.length > 10) {
+        rollLog.splice(10, rollLog.length - 10);
+    }
     for(let i = 0; i < 10; i++) {
-        document.querySelector('.roll-' + [i]).textContent = rollLog[i];
-        
-        // document.querySelector('.roll-' + [i]).src = './imgs/dice-' + rollLog[i] + '.png';
+        document.querySelector('.log-' + [i]).src = './imgs/dice-' + rollLog[i] + '.png';
         
     }
 }
