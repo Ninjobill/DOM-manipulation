@@ -17,7 +17,8 @@ let scores,
     gamePlaying;
 
 let roll,
-    previousRoll;
+    previousRoll,
+    winningScore;
 
 let rollLog = [];
 
@@ -79,7 +80,9 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     }
 });
 
-
+function scoreChange() {
+    winningScore = document.getElementById('new-total').value;
+}
 
 // ***************
 // Hold Button
@@ -91,7 +94,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
         // check if player won the game
-        if(scores[activePlayer] >= 100) {
+        if(scores[activePlayer] >= winningScore) {
             roundScore = 0;
             gamePlaying = false;
             document.querySelector('#name-' + activePlayer).textContent = 'Winner';

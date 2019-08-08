@@ -31,10 +31,14 @@
             </div>
             
             <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
+            <label for="new-total" class='new-total-label'>Winning Score</label>
+            <input type="number" class='new-total' id="new-total" name='new-total' value="100">
+            <button class='btn-score' onclick="scoreChange()">Submit</button>
             <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
             <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
             
-            <img src="./imgs/dice-5.png" alt="Dice" class="dice">
+            <img src="./imgs/dice-5.png" alt="Dice" class="dice dice-1">
+            <!-- <img src="./imgs/dice-5.png" alt="Dice" class="dice dice-2"> -->
 
             <div class="roll-log-panel">
                 <h3>Roll Log</h4>

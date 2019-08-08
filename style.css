@@ -138,14 +138,42 @@ i {
     transition: margin 0.3s;
 }
 
+.btn-score { 
+    top: 120px; 
+    font-size: 14px;
+}
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
-
-.dice {
+.new-total { 
+    top: 100px;
     position: absolute;
     left: 50%;
-    top: 178px;
+    transform: translateX(-50%);
+    width: 60px;
+    text-align: center;
+}
+
+.new-total-label { 
+    top: 80px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dice-1 {
+    position: absolute;
+    left: 50%;
+    top: 160px;
+    transform: translateX(-50%);
+    height: 100px;
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+
+.dice-2 {
+    position: absolute;
+    left: 50%;
+    top: 285px;
     transform: translateX(-50%);
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
