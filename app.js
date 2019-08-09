@@ -24,7 +24,7 @@ let roll1,
 let rollLog1 = [],
     rollLog2 = [];
 
-init();
+init(); 
 
                                                     // callback function
 // document.querySelector('.btn-roll').addEventListener('click', btn);
