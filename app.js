@@ -26,20 +26,6 @@ let rollLog1 = [],
 
 init();
 
-// dice = Math.floor(Math.random() * 6) + 1;
-
-// take value from dice and put into box of current round points racked up.
-// document.querySelector('#current-' + activePlayer).textContent = dice;
-// document.querySelector('#current-' + activePlayer).innerHTML = '<strong>' + dice + '</strong>';
-
-// var x = document.querySelector('#score-0').textContent;
-// console.log(x);
-
-// function btn() {
-//     // do something here
-
-// }
-// btn();
                                                     // callback function
 // document.querySelector('.btn-roll').addEventListener('click', btn);
 
@@ -145,8 +131,8 @@ function rollLogPanel() {
         rollLog2.splice(10, rollLog2.length - 10);
     }
     for(let i = 0; i < 10; i++) {
-        document.querySelector('.log1-' + [i]).src = './imgs/dice-' + rollLog1[i] + ('.png').toLowerCase;
-        document.querySelector('.log2-' + [i]).src = './imgs/dice-' + rollLog2[i] + ('.png').toLowerCase;
+        document.querySelector('.log1-' + [i]).src = './imgs/dice-' + rollLog1[i] + '.png';
+        document.querySelector('.log2-' + [i]).src = './imgs/dice-' + rollLog2[i] + '.png';
     }
 }
 
