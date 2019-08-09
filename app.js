@@ -16,7 +16,8 @@ let scores,
     hide,
     gamePlaying;
 
-let roll,
+let roll1,
+    roll2,
     previousRoll,
     winningScore;
 
@@ -65,7 +66,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
             showDie();
             roundScore += dice;
             document.getElementById('current-' + activePlayer).textContent = roundScore;
-            if(((die1 == roll1 || die1 == roll2) || (die2 == roll1 || die2 == roll2)) && (roll1 == 6 || roll2 == 6)) {
+            if(((die1 == 6) || (die2 == 6)) && (roll1 == 6 || roll2 == 6)) {
                 scores[activePlayer] = 0;
                 document.querySelector('#score-' + activePlayer).textContent = 0;
                 roll1 = "BROKE";
@@ -75,11 +76,16 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
                 rollLogPanel();
                 nextPlayer();
             }
-            roll1 = die1;
-            roll2 = die2;
-            rollLog1.unshift(roll1);
-            rollLog2.unshift(roll2);
-            rollLogPanel();            
+            if(roll1 != "BROKE" && roll2 != "BROKE") {
+                roll1 = die1;
+                roll2 = die2;
+                rollLog1.unshift(roll1);
+                rollLog2.unshift(roll2);
+                rollLogPanel();            
+            } else {
+                roll1 = die1;
+                roll2 = die2;
+            }
         } else {
             // Next Player
             roll1 = "BUST";
@@ -173,9 +179,6 @@ function init() {
 function nextPlayer() {
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
-
-    roll1 = 0;
-    roll2 = 0;
 
     document.getElementById('current-0').textContent = roundScore;
     document.getElementById('current-1').textContent = roundScore;
