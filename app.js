@@ -145,8 +145,8 @@ function rollLogPanel() {
         rollLog2.splice(10, rollLog2.length - 10);
     }
     for(let i = 0; i < 10; i++) {
-        document.querySelector('.log1-' + [i]).src = './imgs/dice-' + rollLog1[i] + '.png';
-        document.querySelector('.log2-' + [i]).src = './imgs/dice-' + rollLog2[i] + '.png';
+        document.querySelector('.log1-' + [i]).src = './imgs/dice-' + rollLog1[i] + ('.png').toLowerCase;
+        document.querySelector('.log2-' + [i]).src = './imgs/dice-' + rollLog2[i] + ('.png').toLowerCase;
     }
 }
 
