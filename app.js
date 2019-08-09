@@ -19,7 +19,7 @@ let scores,
 let roll1,
     roll2,
     previousRoll,
-    winningScore;
+    winningScore = 100;
 
 let rollLog1 = [],
     rollLog2 = [];
@@ -82,10 +82,11 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
                 rollLog1.unshift(roll1);
                 rollLog2.unshift(roll2);
                 rollLogPanel();            
-            } else {
-                roll1 = die1;
-                roll2 = die2;
-            }
+            } 
+            // else {
+            //     roll1 = die1;
+            //     roll2 = die2;
+            // }
         } else {
             // Next Player
             roll1 = "BUST";
@@ -179,6 +180,8 @@ function init() {
 function nextPlayer() {
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
+
+    roll1 = 0;
 
     document.getElementById('current-0').textContent = roundScore;
     document.getElementById('current-1').textContent = roundScore;

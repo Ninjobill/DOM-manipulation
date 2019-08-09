@@ -216,6 +216,21 @@ h3 {
     letter-spacing: 2px;
 }
 
+.log-align {
+    clear: both;
+    padding-bottom: 60px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+    padding-right: 20px;
+
+}
+
 .log {
     height: 59px;
 }
