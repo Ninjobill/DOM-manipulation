@@ -139,32 +139,42 @@ i {
 }
 
 .btn-score { 
-    top: 120px; 
-    font-size: 14px;
+    top: 560px; 
+    font-size: 18px;
 }
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 .new-total { 
-    top: 100px;
+    top: 510px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
+    width: 160px;
     text-align: center;
+    font-family: 'Lato';
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #555;
 }
 
+.new-total:focus { outline: none; }
+
 .new-total-label { 
-    top: 80px;
+    top: 500px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: 'Lato';
 }
 
 .dice-1 {
     position: absolute;
     left: 50%;
-    top: 160px;
+    top: 120px;
     transform: translateX(-50%);
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
@@ -173,7 +183,7 @@ i {
 .dice-2 {
     position: absolute;
     left: 50%;
-    top: 285px;
+    top: 250px;
     transform: translateX(-50%);
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
