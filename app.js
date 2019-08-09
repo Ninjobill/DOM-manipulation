@@ -20,7 +20,8 @@ let roll,
     previousRoll,
     winningScore;
 
-let rollLog = [];
+let rollLog1 = [],
+    rollLog2 = [];
 
 init();
 
@@ -44,36 +45,47 @@ init();
                                                     // anonymous function
                                                     // can't be used anywhere else
 
-let diceDOM = document.querySelector('.dice');
+let diceDOM1 = document.querySelector('.dice-1');
+let diceDOM2 = document.querySelector('.dice-2');
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {
         // 1. random number when clicked
-        dice = Math.floor(Math.random() * 6) + 1;
+        die1 = Math.floor(Math.random() * 6) + 1;
+        die2 = Math.floor(Math.random() * 6) + 1;
+        dice = die1 + die2;
         // 2. display result
-        diceDOM.style.display = 'block';
-        diceDOM.src = './imgs/dice-' + dice + '.png';
+        diceDOM1.style.display = 'block';
+        diceDOM2.style.display = 'block';
+        diceDOM1.src = './imgs/dice-' + die1 + '.png';
+        diceDOM2.src = './imgs/dice-' + die2 + '.png';
     
     // 3. update round score IF the rolled number was NOT a 1.
-        if (dice != 1) {
+        if (die1 != 1 && die2 != 1) {
             // add score
             showDie();
             roundScore += dice;
             document.getElementById('current-' + activePlayer).textContent = roundScore;
-            if(dice == roll && roll == 6) {
+            if(((die1 == roll1 || die1 == roll2) || (die2 == roll1 || die2 == roll2)) && (roll1 == 6 || roll2 == 6)) {
                 scores[activePlayer] = 0;
                 document.querySelector('#score-' + activePlayer).textContent = 0;
-                roll = "BROKE";
-                rollLog.unshift(roll);
+                roll1 = "BROKE";
+                roll2 = "BROKE";
+                rollLog1.unshift(roll1);
+                rollLog2.unshift(roll2);
                 rollLogPanel();
                 nextPlayer();
             }
-            roll = dice;
-            rollLog.unshift(roll);
+            roll1 = die1;
+            roll2 = die2;
+            rollLog1.unshift(roll1);
+            rollLog2.unshift(roll2);
             rollLogPanel();            
         } else {
             // Next Player
-            roll = "BUST";
-            rollLog.unshift(roll);
+            roll1 = "BUST";
+            roll2 = "BUST";
+            rollLog1.unshift(roll1);
+            rollLog2.unshift(roll2);
             rollLogPanel();
             nextPlayer();
         }
@@ -98,13 +110,16 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
             roundScore = 0;
             gamePlaying = false;
             document.querySelector('#name-' + activePlayer).textContent = 'Winner';
-            diceDOM.style.display = 'none';
+            diceDOM1.style.display = 'none';
+            diceDOM2.style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
         } else {
             // next player
-            roll = 'HOLD';
-            rollLog.unshift(roll);
+            roll1 = 'HOLD';
+            roll2 = 'HOLD';
+            rollLog1.unshift(roll1);
+            rollLog2.unshift(roll2);
             rollLogPanel();
             nextPlayer();
         }
@@ -116,12 +131,15 @@ document.querySelector('.btn-new').addEventListener('click', init);
 
 
 function rollLogPanel() {
-    if(rollLog.length > 10) {
-        rollLog.splice(10, rollLog.length - 10);
+    if(rollLog1.length > 10) {
+        rollLog1.splice(10, rollLog1.length - 10);
+    }
+    if(rollLog2.length > 10) {
+        rollLog2.splice(10, rollLog2.length - 10);
     }
     for(let i = 0; i < 10; i++) {
-        document.querySelector('.log-' + [i]).src = './imgs/dice-' + rollLog[i] + '.png';
-        
+        document.querySelector('.log1-' + [i]).src = './imgs/dice-' + rollLog1[i] + '.png';
+        document.querySelector('.log2-' + [i]).src = './imgs/dice-' + rollLog2[i] + '.png';
     }
 }
 
@@ -131,7 +149,8 @@ function init() {
     roundScore = 0;
     gamePlaying = true;
     
-    document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice-1').style.display = 'none';
+    document.querySelector('.dice-2').style.display = 'none';
 
     // Score resets
     document.getElementById('score-0').textContent = '0';
@@ -155,6 +174,9 @@ function nextPlayer() {
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
 
+    roll1 = 0;
+    roll2 = 0;
+
     document.getElementById('current-0').textContent = roundScore;
     document.getElementById('current-1').textContent = roundScore;
 
@@ -168,7 +190,8 @@ function nextPlayer() {
 
 function hideDie() {
     hide = setTimeout(function() {
-        diceDOM.style.display = 'none';
+        diceDOM1.style.display = 'none';
+        diceDOM2.style.display = 'none';
     }, 1000);
 }
     

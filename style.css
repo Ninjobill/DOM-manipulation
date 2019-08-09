@@ -192,6 +192,7 @@ i {
 
 ul {
     display: flex;
+    padding-bottom: 10px;
 }
 
 li {
